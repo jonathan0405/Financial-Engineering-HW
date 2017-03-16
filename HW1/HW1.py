@@ -49,8 +49,8 @@ def diff1(r, C, x):
 def newtons_Method(input_value):
     f0=diff(input_value, C, x)    
     while f0 != 0:
-        input_value=input_value-f0/diff1(input_value, C, x)
-        f0=diff(input_value, C, x)
+        input_value = input_value - f0/diff1(input_value, C, x)
+        f0 = diff(input_value, C, x)
     return input_value
     
 if __name__ == '__main__':
