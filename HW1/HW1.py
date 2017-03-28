@@ -34,7 +34,7 @@ def diff(r, C, x):
         for j in range(1,i+1):
             discount = discount/(1+r)
         value = value + discount*C[i-1]
-    value = value-x
+    value = value - x
     return value
     
 def diff1(r, C, x):
