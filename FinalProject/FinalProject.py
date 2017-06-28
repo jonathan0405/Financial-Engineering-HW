@@ -186,30 +186,35 @@ def Internet_callback():
     return msgs    
 
 def local_callback():
-    with open('data.csv', newline='') as csvfile:
-        reader = csv.reader(csvfile, delimiter=',')
-        for row in reader:
-            
-            data_list.append([float(row[0]), float(row[1]), float(row[2]), float(row[3]), 
-                              float(row[4]), float(row[5]), float(row[6]), float(row[7]), 
-                              float(row[8]), float(row[9]), float(row[10]), e.get()])
-            Strike_Price.append(float(row[0]))
-            Call.append(float(row[1]))
-            Buy_Call.append(float(row[2]))
-            Write_Call.append(float(row[3]))
-            Put.append(float(row[4]))
-            Buy_Put.append(float(row[5]))
-            Write_Put.append(float(row[6]))            
-            if Taiex == []:
-                Taiex.append(float(row[7]))
-                Taiex.append(float(row[8]))
-                Future.append(float(row[9]))
-                Future.append(float(row[10]))
-                global pv
-                rt = float(e.get())/12                
-                pv = np.exp(-rt)
-    label1.configure(text="祝你賺大錢")    
-    disp_result()    
+    try:
+        with open('data.csv', newline='') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for row in reader:
+                
+                data_list.append([float(row[0]), float(row[1]), float(row[2]), float(row[3]), 
+                                  float(row[4]), float(row[5]), float(row[6]), float(row[7]), 
+                                  float(row[8]), float(row[9]), float(row[10]), e.get()])
+                Strike_Price.append(float(row[0]))
+                Call.append(float(row[1]))
+                Buy_Call.append(float(row[2]))
+                Write_Call.append(float(row[3]))
+                Put.append(float(row[4]))
+                Buy_Put.append(float(row[5]))
+                Write_Put.append(float(row[6]))            
+                if Taiex == []:
+                    Taiex.append(float(row[7]))
+                    Taiex.append(float(row[8]))
+                    Future.append(float(row[9]))
+                    Future.append(float(row[10]))
+                    global pv
+                    rt = float(e.get())/12                
+                    pv = np.exp(-rt)
+        label1.configure(text="祝你賺大錢")  
+    except Exception:
+        label1.configure(text="請檢查資料")
+    finally:
+          
+        disp_result()        
         
 def disp_result():
     for i in range(len(Strike_Price)):
