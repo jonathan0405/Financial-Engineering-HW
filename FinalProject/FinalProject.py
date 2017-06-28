@@ -227,6 +227,10 @@ def disp_result():
         Lb1.itemconfigure('end', background="lavenderblush")
         Lb1.insert('end', " ")
         Lb1.itemconfigure('end', background="whitesmoke")
+    
+    if(len(Strike_Price)==0):
+        Lb1.insert('end', "非交易時間 或 連線資料異常")
+        Lb1.itemconfigure('end', background="lightpink")
         
     btn_file.config(state = DISABLED)
     btn_internet.config(state = DISABLED)
