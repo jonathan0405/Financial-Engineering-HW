@@ -21,7 +21,7 @@ class McListBox(object):
         self._setup_widgets()
         self._build_tree()
     def _setup_widgets(self):
-        s = """價格資料"""
+        s = """僅顯示買賣成交價完整之價格資料"""
         msg = ttk.Label(wraplength="4i", justify="left", anchor="n",
             padding=(10, 2, 10, 6), text=s)
         msg.pack(fill='x')
@@ -100,17 +100,17 @@ def Put_Call_Future_Parity(call, put ,future, strike):
         
 def Theorem_3(call, put, taiex, strike):
     if call > Taiex[0]:
-        arbitrage = (call - Taiex[0])
+        arbitrage = (call - Taiex[0]) - 2
         return 'Theorem 3: Short a call, Long the stock. Arbitrage:'+str(arbitrage)
     if put > strike:
-        arbitrage = put
+        arbitrage = put - 1
         return 'Theorem 3: Short a put. Arbitrage:'+str(arbitrage)
     else:
         return 'Theorem 3: No arbitrage.'
         
 def Theorem_4(call, put, taiex, strike):
     if call < max((taiex[1] - strike*pv),0):
-        arbitrage = (max((taiex[1] - strike*pv), 0) - call) + (taiex[0] - taiex[1])
+        arbitrage = (max((taiex[1] - strike*pv), 0) - call) + (taiex[0] - taiex[1]) - 2
         return 'Theorem 4: Long a call, Shorting the stock. Arbitrage:'+str(arbitrage)
     else:
         return 'Theorem 4: No arbitrage.'
@@ -118,7 +118,7 @@ def Theorem_4(call, put, taiex, strike):
 def Theorem_6(call, put, taiex, strike):
     if put != 0:
         if put < max((strike*pv - taiex[1]), 0):
-            arbitrage = (max((strike*pv - taiex[1]),0) - put)
+            arbitrage = (max((strike*pv - taiex[1]),0) - put - 2)
             return 'Theorem 6: Long a put. Long the stock. Arbitage:', arbitrage
         else:
             return 'Theorem 6: No arbitrage.'
