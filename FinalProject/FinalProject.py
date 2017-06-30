@@ -217,20 +217,28 @@ def local_callback():
         disp_result()        
         
 def disp_result():
+    f = open('result_file.txt', 'w')
     for i in range(len(Strike_Price)):
         Lb1.insert('end', "Strike Price: "+str(Strike_Price[i]))
+        f.write("Strike Price: "+str(Strike_Price[i])+"\n")
         Lb1.itemconfigure('end', background="lightpink")
         Lb1.insert('end', Put_Call_Parity(Call[i], Put[i], Taiex, Strike_Price[i]))
+        f.write(Put_Call_Parity(Call[i], Put[i], Taiex, Strike_Price[i])+"\n")
         Lb1.itemconfigure('end', background="lavenderblush")
         Lb1.insert('end', Put_Call_Future_Parity(Call[i], Put[i], Future, Strike_Price[i]))
+        f.write(Put_Call_Future_Parity(Call[i], Put[i], Future, Strike_Price[i])+"\n")
         Lb1.itemconfigure('end', background="lavenderblush")
         Lb1.insert('end', Theorem_3(Call[i], Put[i], Taiex, Strike_Price[i]))
+        f.write(Theorem_3(Call[i], Put[i], Taiex, Strike_Price[i])+"\n")
         Lb1.itemconfigure('end', background="lavenderblush")
         Lb1.insert('end', Theorem_4(Call[i], Put[i], Taiex, Strike_Price[i]))
+        f.write(Theorem_4(Call[i], Put[i], Taiex, Strike_Price[i])+"\n")
         Lb1.itemconfigure('end', background="lavenderblush")
         Lb1.insert('end', Theorem_6(Call[i], Put[i], Taiex, Strike_Price[i]))
+        f.write(Theorem_6(Call[i], Put[i], Taiex, Strike_Price[i])+"\n")
         Lb1.itemconfigure('end', background="lavenderblush")
         Lb1.insert('end', " ")
+        f.write("\n")
         Lb1.itemconfigure('end', background="whitesmoke")
     
     if(len(Strike_Price)==0):
